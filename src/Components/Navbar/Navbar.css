@@ -1,0 +1,86 @@
+nav
+{
+    height: 5rem;
+    width: 100vw;
+    display: flex;
+    place-items: center;   
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 99;
+    background-color: #252525;
+}
+.nav__container
+{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    /* justify-content: center; */
+}
+.nav__link
+{
+    display: flex;
+    gap: 4rem;
+    align-items: center;
+    /* float: left; */
+    
+}
+.nav__link button
+{
+    /* float: right; */
+    position: relative;
+    right: -50rem;
+}
+
+nav img
+{
+    display: block;
+    width: 7rem;
+    /* margin-left: auto; */
+}
+
+/* nav
+{
+    width: 100vw;
+    display: flex;
+    place-items: center;
+    position: fixed;
+    /* height: 4rem; 
+}
+.nav__container
+{
+    display: flex;
+    justify-content: center;
+    position: relative;
+} */
+
+/* ul
+{
+    list-style: none;
+    display: flex;
+    /* display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 4rem;
+    width: 100%;
+    background-color: rgb(51, 51, 51);
+}
+ul li
+{
+    padding: 0.8rem;
+    font-size: 1.2rem;
+    color: white;
+    display: flex;
+}
+ul li button
+{
+    position: relative;
+    right: -10rem;
+}
+
+/* .right
+{
+    /* float: left; 
+} */ 

@@ -1,0 +1,17 @@
+.footer__container
+{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    margin-inline: auto;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(227, 24,55);
+}
+.footer__container :any-link
+{
+    color: black;
+}
+.footer__container p
+{
+    color: white;
+}
