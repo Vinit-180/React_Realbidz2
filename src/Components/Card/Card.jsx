@@ -4,7 +4,7 @@ const Card = ({img,children}) => {
   return (
     <article>
         <img src={img} alt="Image of house" height={100} width={100} />
-        <div>
+        <div className='children'>
         {children}
         </div>
     </article>

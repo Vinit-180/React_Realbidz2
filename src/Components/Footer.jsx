@@ -5,7 +5,6 @@ import {AiFillFacebook,AiFillInstagram,AiFillTwitterSquare,AiFillLinkedin} from 
 const Footer = () => {
   return (
     <footer className='footer__container'>
-       
     <p>
             <Link to='/'>
               <b>

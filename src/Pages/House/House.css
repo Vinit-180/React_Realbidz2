@@ -1,0 +1,44 @@
+.carousels
+{
+    margin-top: 6rem;
+}
+
+.details
+{
+    margin: 1rem 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.details ul li
+{
+    padding-top: 2rem;
+}
+
+
+.contactowner
+{
+    margin: 2rem;
+}
+
+.contactowner button
+{
+    background-color: #dc3545;
+    color: white;
+    border: 2px solid transparent;
+    border-radius: 15%;
+    font-size:1.2rem;
+    font-weight: 500;
+    padding: 0.8rem;
+}
+
+.advertise
+{
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.advertise__card
+{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+}
