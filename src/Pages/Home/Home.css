@@ -60,7 +60,7 @@ input[type=range]:focus
 } */
 
 
-form{
+/* .choice__form{
     display: grid;
     grid-template-columns: repeat(3,1fr);
     margin: 0 auto;
@@ -68,8 +68,8 @@ form{
     gap: 1rem;
     background-color: rgba(183, 172, 172, 0.5);
     margin-bottom: 2rem;
-}
-form label
+} */
+.choice__form label
 {
     cursor: pointer;
     
@@ -77,7 +77,7 @@ form label
     font-weight: 400;
     line-height: 1.3rem;
 }
-form select
+.choice__form select
 {
     width: 20rem;
     display: block;
@@ -89,12 +89,12 @@ form select
     padding: 0.4rem 2.25rem 0.4rem  0.75rem;
     border: 0.1pc solid #E31836;
 }
-form p
+.choice__form p
 {
     padding: 0 1rem;
     
 }
-form button
+.choice__form button
 {
     width: 20rem;
     height: 2.5rem;

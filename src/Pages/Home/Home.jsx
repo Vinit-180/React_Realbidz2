@@ -46,8 +46,9 @@ const Home = () => {
             Discover your Property in RealBidz
             </h1>
         </center>
-        <form action="" method='post'>
-          <p>
+        <form action="" method='post' className='choice__form container-fluid'>
+          <div className="row mt-4">
+          <p className='col-md-3 m-auto'>
             <label htmlFor="district">City</label>
              <br />
             <select name="district" 
@@ -63,7 +64,7 @@ const Home = () => {
                 })}
             </select>
           </p>
-          <p>
+          <p className='col-md-3 m-auto'>
             <label htmlFor="village">Area/Village</label>
             <br />
             <select name="village" id="village">
@@ -79,7 +80,7 @@ const Home = () => {
               }
             </select>
           </p>
-          <p>
+          <p className='col-md-3 m-auto'>
             <label htmlFor="type">Type</label>
             <br />
             <select name="type" id="type">
@@ -89,7 +90,9 @@ const Home = () => {
               <option value="Commercial">Commercial</option>
             </select>
           </p>
-          <p>
+          </div>
+          <div className="row mt-4">
+          <p className='col-md-3 m-auto'>
             <label htmlFor="category">Category</label>
             <br />
             <select name="category" id="category">
@@ -102,7 +105,7 @@ const Home = () => {
               <option value="House/villa">House/Villa</option>
             </select>
           </p>
-          <p >
+          <p className='col-md-3 m-auto'>
             Budget
             <br />
             <select name="budget" id="budget">
@@ -127,11 +130,12 @@ const Home = () => {
               </option>
             </select>
           </p>
-          <p>
+          <p className='col-md-3 m-auto'>
             <button type="submit">
             &#128269;
             Search</button>
           </p>
+          </div>
         </form>
         <div className="advertise">
         <Card img={img1}>
