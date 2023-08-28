@@ -3,7 +3,7 @@ import img1 from '../../Images/pexels-photo-3285725.png'
 import './Home.css'
 import Card from '../../Components/Card/Card'
 import axios from 'axios';
-import Footer from '../../Components/Footer'
+import { card__data } from '../../data';
 const Home = () => {
   const [city,setCity]=useState([]);
   const [area,setArea]=useState([]);
@@ -39,7 +39,7 @@ const Home = () => {
     <>
     <div className="main__container">
         <div className="main__image">
-            <img src={img1} alt="img1" />
+            <img src={img1} alt="img1" className='img-fluid' />
         </div>
         <center>
         <h1>
@@ -137,15 +137,44 @@ const Home = () => {
           </p>
           </div>
         </form>
-        <div className="advertise">
-        <Card img={img1}>
-        <h1>2 BHK apartment
+        {/* <div class="card p-4 m-4">
+          <img src="Images/1 (2).png" class="card-img-top" alt="..." id="img1">
+          <div class="card-body m-2">
+            <h5 class="card-title">3 BHK Apartment</h5>
+            <p class="card-text fw-bold">
+              <span id="price1">
+                48.8 Lac
+              </span>
+               | 1140sqft
+            </p>
+            <p class="card-text"><small class="text-muted">Kavisha amara</small>
+              <br>
+              Under Construction
+            </p>
+          </div>
+        </div> */}
+        <div className="advertise row">
+          <div className='col-sm-6 col-lg-3'> 
+          {
+            card__data.map((e)=>
+            {
+              return (
+                <Card img={img1} type={e.type} price={e.price}
+                area={e.area} schemeName= {e.schemeName} location={e.location}
+                pincode={e.pincode}
+                ></Card>
+                )
+              })
+            }
+            </div>
+        {/* <Card img={img1} >
+         <h1>2 BHK apartment
           48.8Lac |1140sqft
         </h1>
         <h3>
           Kavish amara
-        </h3>
-        </Card> 
+        </h3> 
+        </Card>  */}
         </div>
     </div>
     </>

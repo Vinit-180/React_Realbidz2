@@ -1,0 +1,23 @@
+.type,.category
+{
+    background-color: white;
+    color: black;
+    padding: 0 2rem;
+    border: 0.5px solid rgba(0,0,0,0.6);
+}
+.click
+{
+    background-color: rgba(214, 31, 31, 0.774);
+}
+.thumbnails
+{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.thumbnail {
+    width: 100px;
+    height: 100px;
+    margin: 8px;
+    object-fit: cover;
+  }

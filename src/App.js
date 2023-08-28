@@ -5,8 +5,12 @@ import Footer from './Components/Footer';
 import Home from './Pages/Home/Home';
 import House from './Pages/House/House';
 import SignupForm from './Pages/Signup/SignupForm';
+import Login from './Pages/Login/Login';
+import SellWithUs from './Pages/SellWithUs/SellWithUs';
 
 function App() {
+  const location=window.location.href.split('/');
+  console.log(location.at(-1))
   return (
     <BrowserRouter>
     <Navbar/>
@@ -14,10 +18,13 @@ function App() {
     <Route index element={<Home/>}></Route>
     <Route path='/house' element={<House/>} ></Route>
     <Route path='/signup' element={<SignupForm/>}></Route>
+    <Route path='/login' element={<Login/>}></Route>
+    <Route path='/sellwithus' element={<SellWithUs/>}></Route>
     {/* <Route path='/footer' element={<Footer/>}></Route> */}
 
     </Routes>
-    <Footer/>
+  {location.at(-1)!='login' && (<Footer/>)}
+    
     </BrowserRouter>
     
     // <div className="App">

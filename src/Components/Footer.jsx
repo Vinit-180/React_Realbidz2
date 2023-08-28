@@ -245,7 +245,7 @@ const Footer = () => {
           </div>
         </div>
       </footer>
-      <footer className="footer__container">
+      {/* <footer className="footer__container">
         <p>
           <Link to="/">
             <b>Realbidz</b>
@@ -295,7 +295,7 @@ const Footer = () => {
             </li>
           </ul>
         </p>
-      </footer>
+      </footer> */}
     </>
   );
 };

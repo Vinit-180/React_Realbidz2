@@ -25,3 +25,8 @@ code {
   text-decoration: none;
   
 }
+
+body:not(nav)
+{
+  margin-top: 5rem;
+}

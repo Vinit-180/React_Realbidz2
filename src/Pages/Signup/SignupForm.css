@@ -4,16 +4,16 @@
     margin-top:6rem;
     /* max-width: fit-content; */
     width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    /* display: grid;
+    grid-template-columns: 1fr 1fr; */
     /* gap: 2rem; */
     /* margin-inline: auto; */
 }
 
-.form__left
+/* .form__left
 {
     margin: 0 auto;
-}
+} */
 
 .form__right
 {
@@ -23,7 +23,7 @@
 .form__right form{
     float: left;
 }
-.form__right form input{
+.form__right form input:not(input[type="checkbox"]){
     width: 100%;
     padding: 0.6rem 0.6rem;
     margin-top: 0.4rem;
@@ -38,9 +38,20 @@
 {
     margin: 1rem auto;
 }
-.tandc
+/* .tandc
 {
     display: grid;
     grid-template-columns: 10% 90%;
     gap: 3rem;
+} */
+
+@media screen and (max-width:992px) {
+    .form__right
+    {
+        padding: 0;
+    }
+    .form__left
+    {
+        display: none;
+    }
 }

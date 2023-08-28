@@ -2,35 +2,47 @@ import React, { useState } from 'react'
 import logo from '../../Images/auction.png'
 import './SignupForm.css'
 import { useForm } from 'react-hook-form';
+import axios from 'axios';
 const SignupForm = () => {
     // const [formdata,setFormdata]=useState({});
+    const {register,handleSubmit,watch,formState:{errors}}=useForm();
+    const [formError,setFormError]=useState("");
     const submit=(data)=>{
+        console.log("eee",errors);
         console.log(data);
+        // localhost:9999/api/v1/signup/adduser
+        axios.post('http://localhost:9999/api/v1/signup/adduser',data).then((data)=>{
+            console.log(1);
+            console.log(data.data.data);
+        }).catch((error)=>{
+            setFormError(error.response.data.message+'!!');
+            console.log(error);
+        })
     }
-    const {register,handleSubmit,watch,formState:{errors},getValues}=useForm();
-    const password=watch("pswd");
+   
+    const pswd=watch("password");
     const ValidationSchema={
-        fname:{
+        firstName:{
             required:{
-                value:"true",
+                value:true,
                 message:"First Name is required"
             }
         },
-        lname:{
+        lastName:{
             required:{
-                value:'true',
+                value:true,
                 message:"Last Name is required"
             }
         },
             email:{
                 required:{
-                    value:"true",
+                    value:true,
                     message:"Email is required"
                 }
             },
-            phone:{
+            phoneNo:{
                 required:{
-                    value:"true",
+                    value:true,
                     message:"Phone no. is required"
                 },
                 pattern:{
@@ -38,9 +50,9 @@ const SignupForm = () => {
                     message:"Enter Valid Phone no."
                 }
             },
-            pswd:{
+            password:{
                 required:{
-                    value:'true',
+                    value:true,
                     message:"Password must be required"
                 },
                 pattern:{
@@ -50,49 +62,53 @@ const SignupForm = () => {
             },
             cpswd:{
                 required:{
-                    value:'true'
+                    value:true
                 }
             },
             tandc:{
                 required:{
-                    value:'true',
+                    value:true,
                     message:"please agree with us"
                 }
             }
         }
       return (
     <>
-    <div className='form__container'>
-    <div className="form__left">
+    {/* form__container */}
+    <div className='form__container row m-5'>
+    <div className="col-xl-6 form__left">
         <img src={logo} alt="Logo Image" />
     </div>
-    <div className="form__right">
+    <div className="col-xl-6 form__right col-sm-12">
+        {/* // form__right */}
         <h1>REGISTER FORM</h1>
-    <form action="" method='post' onSubmit={handleSubmit(submit)}>
-        <p>
-        <label htmlFor="fname">Firstname</label>
+    <form action="" onSubmit={handleSubmit(submit)}>        
+            <h1 style={{c9olor:'Red'}}>{formError}</h1>
+        <p >
+        <label htmlFor="firstName">Firstname</label>
         <br />
-        <input type="text" name="fname"
-         id="fname"
+        <input type="text" name="firstName"
+         id="fName"
+        //  className='form-control col-lg-6 col-xl-12'
          placeholder='Enter your firstname'
-         {...register("fname",ValidationSchema.fname)}
+         {...register("firstName",ValidationSchema.firstName)}
          />
          {<span style={{color:'red'}}>
-            {errors?.fname?.message}
+            {errors?.firstName?.message}
          </span>}
         </p>
-        <p>
-            <label htmlFor="lname">Lastname</label>
+        <p className='col-xl-12'>
+            <label htmlFor="lastName">Lastname</label>
             <br />
             <input type="text"
-             name="lname" 
-             id="lname"
+             name="lastName" 
+             id="lName"
              placeholder='Enter your lastname'
-             {...register('lname',ValidationSchema.lname)}
+             {...register('lastName',ValidationSchema.lastName)}
              />
             {
                 <span style={{color:'red'}}>
-                    {errors?.lname?.message}</span>
+                    {errors?.lastName?.message}</span>
             }                
         </p>
         <p>
@@ -110,30 +126,30 @@ const SignupForm = () => {
              }
         </p>
         <p>
-            <label htmlFor="phone">Phone</label>
+            <label htmlFor="phoneNo">Phone</label>
             <br />
             <input type="number"
-             name="phone" id="phone"
+             name="phoneNo" id="phoneNo"
              placeholder='Enter your phoneno.'
-             {...register('phone',ValidationSchema.phone)}
+             {...register('phoneNo',ValidationSchema.phoneNo)}
              />
              {
                 <span style={{color:'red'}}>
-                    {errors?.phone?.message}
+                    {errors?.phoneNo?.message}
                 </span>
              }
         </p>
         <p>
-            <label htmlFor="pswd">Password</label>
+            <label htmlFor="password">Password</label>
             <br />
-            <input type="password" name="pswd"
-             id="pswd" 
+            <input type="password" name="password"
+             id="password" 
              placeholder='Enter your password'
-             {...register("pswd",ValidationSchema.pswd)}
+             {...register("password",ValidationSchema.password)}
              />
              {
                 <span style={{color:'red'}}>
-                    {errors?.pswd?.message}
+                    {errors?.password?.message}
                 </span>
              }
         </p>
@@ -146,18 +162,21 @@ const SignupForm = () => {
              {...register("cpswd",ValidationSchema.cpswd)}
              />
              {
-                watch('cpswd')!==watch('pswd')?(
+                watch('cpswd')!==watch('password')?(
                 <span style={{color:'red'}}>
                     NOT MATCH
                     {/* {errors.cpswd?.message} */}
                 </span>):null
              }
         </p>
-        <p className='tandc'>
+        <p className='tandc form-check'>
             <input type="checkbox" name="tandc" id="tandc"
+            className="form-check-input"
             {...register("tandc",ValidationSchema.tandc)}
             />
-            <label htmlFor="tandc">I Agree To Terms And Conditions 
+            <label htmlFor="tandc"
+            className="form-check-label"
+            >I Agree To Terms And Conditions 
             {
                 <p style={{color:'red'}}>
                     {errors?.tandc?.message}
@@ -166,12 +185,12 @@ const SignupForm = () => {
             </label>
         </p>
         <p>
-            <input type="submit" value="Signup" />
+            <input type="submit" value="SignUp" />
         </p>
         <p>
             Already register?
             <span>
-                <a href="/">login now</a>
+                <a href="/login">login now</a>
             </span>
         </p>
     </form>

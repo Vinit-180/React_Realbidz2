@@ -1,0 +1,45 @@
+.login__form h1{
+    color: rgba(0,0,0,0.8);
+}
+.login__form hr
+{
+    border: 1px solid red;
+}
+
+.login__form input
+{
+    width: 20rem;
+    font-weight: 500;
+    padding: 0.3rem;
+    border-top:0;
+    border-left: 0;
+    box-shadow: 3px 3px 10px rgba(0,0,0,0.8);
+}
+.login__form input::placeholder
+{
+    color: rgba(0,0,0,0.4);
+}
+.login__form input:focus
+{
+    outline: none;
+    outline-width: 0;
+    border: 0;
+    border-bottom: 2px solid black;
+    box-shadow: none;
+}
+
+.login__form button
+{
+    cursor: pointer;
+    border: 2px solid black;
+    font-weight: 500;
+    font-size: 1.2rem;
+    padding: 0.4rem 1rem;
+    border-radius: 10px;
+}
+
+.login__form button:hover{
+    background-color: brown;
+    color: black !important;
+}
+

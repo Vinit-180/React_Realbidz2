@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { carousel__images } from "../../data";
 import Carousel from "../../Components/Carousel/Carousel";
 import Card from "../../Components/Card/Card";
 import "./House.css";
+import axios from "axios";
 const House = () => {
+  const [data,setData]=useState([]);
+  const getData=()=>{
+    axios.get("http://localhost:999")
+  }
   return (
     <>
       <div className="carousels" >
@@ -80,8 +85,12 @@ const House = () => {
         </center>
          </h1>
          <div className="advertise__card">
-         <Card img={carousel__images[0].img}>
-        <h1>2 BHK apartment
+         <Card img={carousel__images[0].img} type={'2BHK Apartment'}
+         price='48.8Lac' area='Ahemdabad' schemeName='Kavish amara'
+         location='Ahemdabad'
+         pincode='382006'
+         >
+        {/* <h1>2 BHK apartment
         </h1>
         <h2>
           &#8377;
@@ -89,7 +98,7 @@ const House = () => {
         </h2>
         <h3>
           Kavish amara
-        </h3>
+        </h3> */}
         </Card> 
          <Card img={carousel__images[0].img}>
         <h1>2 BHK apartment

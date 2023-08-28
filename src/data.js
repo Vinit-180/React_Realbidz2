@@ -32,3 +32,15 @@ export const carousel__images = [
     img: require("./Images/house1_03.jpg"),
   },
 ];
+
+export const card__data=[
+  {
+    id:1,
+    type:'2 BHK Apartment',
+    price:'48.8 Lac',
+    area:'1140sqft',
+    schemeName:'Kavish amara (Under Constuction)',
+    location:'Ahmedabad',
+    pincode:382016
+  }
+]

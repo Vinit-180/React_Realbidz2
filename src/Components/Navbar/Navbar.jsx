@@ -1,40 +1,102 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import img from '../../logo.svg'
 import { links } from '../../data'
+import { FaBars } from 'react-icons/fa'
+import { AiOutlineClose } from 'react-icons/ai'
+import { RiAccountCircleFill } from 'react-icons/ri'
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import './Navbar.css'
 const Navbar = () => {
   let navigate=useNavigate();
+  const [isUser,setIsUser]=useState("");
+  const checkUser=()=>{
+    const user=localStorage.getItem('user');
+    console.log(user)
+    if(user!=null)
+    {
+      setIsUser(true);
+      console.log(1);
+      // window.location.reload();
+    }
+  }
+  console.log("swdf",isUser);
   const signup=()=>{
     navigate("/signup");
   }
+  const login=()=>{
+    navigate("/login");
+  }
+  const logout=()=>{
+    localStorage.removeItem('isuser')
+    localStorage.removeItem('user');
+    setIsUser(false);
+    window.location.reload();
+  }
+  const [isNavShowing,setIsNavShowing]=useState(false);
+
+  useEffect(()=>{
+    checkUser();
+  },[])
+
   return (
     // <>
     <nav>
-      <img src={img} alt="navbar img" />
+      <div>
+      </div>
       <div className="nav__container">
-    <ul className='nav__link'>
+      <img src={img} alt="navbar img" />
+    <ul className={`nav__link ${isNavShowing ? 'show__nav' : 'hide__nav'}`} >
+    {/* onClick={()=>{setIsNavShowing((prev)=>!prev)}} */}
       {
         links.map(({name,path},index)=>{
           return (<li key={index}>
-                    <NavLink to={path}>
+                    <NavLink
+                     to={path}
+                     className='item'
+                     onClick={()=>{setIsNavShowing((prev)=>!prev)}} 
+                    >
           {name}
                     </NavLink>  
           </li>)
         })
       }
 
+      </ul>
+        
+      {
+          isUser ? (<button onClick={logout}  className='signup mt-1 ms-1 me-5  btn btn-danger'>Logout</button>) :
+          (<>
+          <li style={{float:'right'}}>
 
-      <li>  
-        <button onClick={signup}>
+          <button onClick={signup} className='signup mt-1 ms-1 me-3  btn btn-danger'>
           Signup
         </button>
-      </li>
-      <li>
-        <button>Login</button>
-      </li>
+          </li>
+          <li style={{float:'right'}}>
 
-    </ul>
+        <button className='login mt-1 ms-1 me-3 btn btn-danger' onClick={login}>
+          Login</button>
+          </li>
+
+          </>
+          )
+        }
+      {/* <li className='responsive'>
+      </li> */}
+
+        
+
+    <button
+       className='nav__toggle-button'
+       onClick={()=>{setIsNavShowing(prev=>!prev)}}
+      >
+        {
+          isNavShowing ? <AiOutlineClose/> : <FaBars/> 
+        }
+      </button>
+      <p className='icon'>
+      <RiAccountCircleFill/>
+      </p>
       </div>
     </nav>
     // </>
