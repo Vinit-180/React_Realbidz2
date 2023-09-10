@@ -1,0 +1,38 @@
+
+.profileImage
+{
+    position: relative;
+}
+#userProfile:hover
+{
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+#userProfile:hover.text-profilepic
+{
+    
+    opacity: 1;
+}
+
+/* #userProfile {
+    position: relative;
+} */
+
+.text-profilepic
+{
+    
+    position: absolute;
+top: 50%;
+left:50%;
+/* opacity: 0; */
+text-align: center;
+/* transform: translate(-50%, -50%); */
+}
+
+.text-profilepic svg
+{
+    background-color: #04AA6D;
+    color: white;
+    font-size: 16px;
+    padding: 16px 32px;}

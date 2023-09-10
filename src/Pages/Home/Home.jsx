@@ -1,18 +1,24 @@
 import React, { useEffect, useState } from 'react'
 import img1 from '../../Images/pexels-photo-3285725.png'
+import img2 from '../../Images/Change_house_1.jpg'
 import './Home.css'
 import Card from '../../Components/Card/Card'
 import axios from 'axios';
 import { card__data } from '../../data';
+import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom'
 const Home = () => {
   const [city,setCity]=useState([]);
   const [area,setArea]=useState([]);
+  const [propertyData,setPropertyData]=useState([]);
   const [range,setRange]=useState(0);
+  const {register,handleSubmit,formState: {errors} }=useForm();
+  const navigate=useNavigate();
   const getCity=()=>{
     axios
     .get("http://localhost:9999/api/v1/city/getcity")
     .then((data)=>{
-      console.log("THE DATA IS",data);
+      // console.log("THE DATA IS",data);
       setCity(data.data.data);
     }).catch((error)=>{
       console.log(error);
@@ -23,7 +29,7 @@ const Home = () => {
     axios
     .get("http://localhost:9999/api/v1/area/getareabyid/"+e.target.value)
     .then((data)=>{
-      console.log(data.data);
+      // console.log(data.data);
       console.log(data.data.data);
       setArea(data.data.data);
     })
@@ -31,6 +37,49 @@ const Home = () => {
       console.log(error);
     })
   }
+  const ValidationSchema={
+    city:{
+      required:{
+        value:true,
+        message:"Choose City"
+      }
+    },
+    area_village:{
+      required:{
+        value:true,
+        message:"Choose Area/Village"
+      }
+    },
+    category:{
+      required:{
+        value:true,
+        message:"Choose Category"
+      },
+    },
+    budget:{
+      required:{
+        value:true,
+        message:"Choose Your Budget"
+      }
+    }
+
+
+  }
+  const submit=(data)=>{
+    console.log(data);
+    axios.post("http://localhost:9999/api/v1/property/getproperty",data).then((data)=>{
+      console.log(data);
+      setPropertyData(data.data.data);
+    }).catch((error)=>{
+      console.log(error);
+    })
+  }
+
+  const navigateToPage=(id)=>{
+    console.log("id",id);
+    navigate('/house',{state:{value:id}});
+  }
+
   useEffect(()=>{
     getCity();
     console.log("the data is ",city);
@@ -46,19 +95,27 @@ const Home = () => {
             Discover your Property in RealBidz
             </h1>
         </center>
-        <form action="" method='post' className='choice__form container-fluid'>
+        <form className='choice__form container-fluid' onSubmit={handleSubmit(submit)} >
           <div className="row mt-4">
           <p className='col-md-3 m-auto'>
-            <label htmlFor="district">City</label>
-             <br />
-            <select name="district" 
-            id="district"
+            <label htmlFor="districts">City</label>
+            {
+              <span style={{color:'red'}}>
+                <br />
+                {errors?.city?.message}
+              </span>
+            }
+             
+            <select 
+            id="citys"
+            name="city" 
+            {...register("city",ValidationSchema.city)}
             onChange={getArea}
-             required>
-              <option value="choose city" >Choose city</option>
+            >
+              <option value='' >Choose city</option>
               {
                 city?.map((e)=>{
-                  return (<option value={e._id}>
+                  return (<option value={e._id}  >
                     {e.cityName}
                   </option>);
                 })}
@@ -66,9 +123,16 @@ const Home = () => {
           </p>
           <p className='col-md-3 m-auto'>
             <label htmlFor="village">Area/Village</label>
-            <br />
-            <select name="village" id="village">
-              <option value="village">Choose Village</option>
+            {
+              <span style={{color:'red'}}>
+                <br />
+                {errors?.area_village?.message}
+              </span>
+            }
+            <select name="area_village" id="village"
+            {...register("area_village",ValidationSchema.area_village)}
+            >
+              <option value='' >Choose Village</option>
               {
                 area.map((area)=>{
                   return (
@@ -87,16 +151,23 @@ const Home = () => {
               <option value="Type">Choose Type</option>
               <option value="Buy">Buy</option>
               <option value="Rent">Rent</option>
-              <option value="Commercial">Commercial</option>
+              {/* <option value="Commercial">Commercial</option> */}
             </select>
           </p>
           </div>
           <div className="row mt-4">
           <p className='col-md-3 m-auto'>
             <label htmlFor="category">Category</label>
-            <br />
-            <select name="category" id="category">
-              <option value="category">Choose Category</option>
+            {
+              <span style={{color:'red'}}>
+                <br />
+                {errors?.category?.message}
+              </span>
+            }
+            <select name="category" id="category"
+            {...register("category",ValidationSchema.category)}
+            >
+              <option value="">Choose Category</option>
               <option value="1Bhk">1 Bhk</option>
               <option value="2Bhk">2 Bhk</option>
               <option value="3Bhk">3 Bhk</option>
@@ -107,9 +178,16 @@ const Home = () => {
           </p>
           <p className='col-md-3 m-auto'>
             Budget
-            <br />
-            <select name="budget" id="budget">
-              <option value="budget">Budget</option>
+            {
+              <span style={{color:'red'}}>
+                <br />
+                {errors?.budget?.message}
+              </span>
+            }
+            <select name="budget" id="budget"
+            {...register("budget",ValidationSchema.budget)}
+            >
+              <option value="" >Budget</option>
               <option value="25lac">
                 &#8377; 25 lac
               </option>
@@ -131,35 +209,43 @@ const Home = () => {
             </select>
           </p>
           <p className='col-md-3 m-auto'>
-            <button type="submit">
+            <button type="submit" onClick={()=>{console.log('1')}}>
             &#128269;
             Search</button>
           </p>
           </div>
         </form>
-        {/* <div class="card p-4 m-4">
-          <img src="Images/1 (2).png" class="card-img-top" alt="..." id="img1">
-          <div class="card-body m-2">
-            <h5 class="card-title">3 BHK Apartment</h5>
-            <p class="card-text fw-bold">
-              <span id="price1">
-                48.8 Lac
-              </span>
-               | 1140sqft
-            </p>
-            <p class="card-text"><small class="text-muted">Kavisha amara</small>
-              <br>
-              Under Construction
-            </p>
+          <div className="container-fluid mt-2 row">
+            {
+              propertyData.map((e)=>{
+                return (
+                  <Card img={e.image[0]} bedroom={e.bedrooms} type={e.type}
+                  id={e._id}
+                  classn={'col-sm-6 col-lg-3'}
+                  price={e.price}
+                   schemeName={e.schemeName}
+                   area={e.area} location={e.city} pincode={e.pincode}
+                   
+                  //  className='col-3'
+                   />
+                   )
+                  })
+                }
           </div>
-        </div> */}
-        <div className="advertise row">
-          <div className='col-sm-6 col-lg-3'> 
+        <div className="advertise mt-2">
+          <h1>
+            <center>
+            Popular Properties In Ahmedabad
+            </center>
+          </h1>
+          <div className='container-fluid mt-2 row'> 
           {
             card__data.map((e)=>
             {
               return (
-                <Card img={img1} type={e.type} price={e.price}
+                <Card img={e.img} type={e.type} price={e.price}
+                classn={'col-sm-6 col-lg-3'}
+                bedroom={e.bedrooms}
                 area={e.area} schemeName= {e.schemeName} location={e.location}
                 pincode={e.pincode}
                 ></Card>

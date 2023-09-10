@@ -4,6 +4,7 @@ import sellImage from "../../Images/sellwithus.svg";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
+import {GiCancel} from 'react-icons/gi'
 import 'react-toastify/dist/ReactToastify.css';
 const SellWithUs = () => {
   const {
@@ -27,6 +28,7 @@ const SellWithUs = () => {
     axios
     .get("http://localhost:9999/api/v1/area/getareabyid/"+e.target.value)
     .then((data)=>{
+      console.log(data);
       setArea(data.data.data);
     })
     .catch((error)=>{
@@ -109,6 +111,12 @@ const SellWithUs = () => {
         message: "CarpetArea is required",
       },
     },
+    schemeName:{
+      required:{
+        value:true,
+        message:"SchemeName is required"
+      }
+    },
     floor: {
       required: {
         value: true,
@@ -155,6 +163,12 @@ const SellWithUs = () => {
         message: "FullAddress is required",
       },
     },
+    pincode:{
+        required:{
+          value:true,
+          message:"Pincode is required"
+        }
+    },
     price: {
       required: {
         value: true,
@@ -168,14 +182,39 @@ const SellWithUs = () => {
       },
     },
   };
+  const fileReader=new FileReader();
   const [images, setImages] = useState([]);
+  const [prevImages,setPrevImages]=useState([]);
   const notify = () =>  toast.success('Your form has been successfully uploaded.');
   const handleImageChange = (event) => {
+    event.preventDefault();
     const newImages = event.target.files;
     console.log("1 IMAGE UPLOADED");
     console.log(images);
-    setImages([...images, ...newImages]);
+    const img2=URL.createObjectURL(event.target.files[0]);
+    // console.log(img2);
+    // console.log(newImages)
+    setPrevImages([...prevImages,{file:img2}]);
+    setImages([...images,...newImages]);
   };
+  const removeImage=(id)=>{
+    const arr=[];
+    // setImages(...arr,images.filter((e)=>{
+    //   if(e.file!=id)
+    //   {
+    //     return true
+    //   }
+    //   return false
+    // }));
+    setPrevImages(...arr,prevImages.filter((e)=>{
+      if(e.file!=id)
+      {
+        return true
+      }
+      return false
+    }))
+
+  }
   const [formError, setFormError] = useState("");
   const submit = (data) => {
 
@@ -186,33 +225,28 @@ const SellWithUs = () => {
     console.log(data);
     const formData = new FormData();
     var keys = Object.keys(data);
-    // console.log(keys)
     keys.map((e) => {
-      // if (data[e] instanceof FileList) {
-      //   console.log(e, data[e][0]);
-      //    formData.append("file", data[e][0]);
-      // }
-      //  else {
       console.log(e);
       formData.append(e, data[e]);
-
-      // }
     });
     console.log(images);
     images.forEach((image) => {
       console.log(1);
+      console.log(image);
       formData.append("file", image);
     });
-
-
+    // const userprofile=localStorage.getItem("");
     const config = {
       headers: { "content-type": "multipart/form-data" },
     };
     axios
       .post(
-        "http://localhost:9999/api/v1/sellproperty/addproperty",
+        "http://localhost:9999/api/v1/property/addproperty",
         formData,
-        config
+        {headers: {
+          "content-type": "multipart/form-data" ,
+          token: localStorage.getItem("user")
+        }}
       )
       .then((data) => {
         console.log(data);
@@ -231,10 +265,10 @@ const SellWithUs = () => {
   return (
     <>
       <div className="row container-fluid ">
-        <div className="col-6 mt-5 mb-5">
+        <div className="col-md-6 mt-5 mb-5 col-sm-0">
           <img src={sellImage} alt="" className="h-100 w-100" />
         </div>
-        <div className="col-6 mt-5 mb-5">
+        <div className="col-md-6 mt-5 mb-5 col-sm-12">
           <h1>
             <center>Post your Ad</center>
           </h1>
@@ -614,6 +648,20 @@ const SellWithUs = () => {
               />
             </p>
             <p>
+              SchemeName:{
+                <span style={{ color: "red" }}>
+                  <br />
+                {errors?.schemeName?.message}
+              </span>
+              }
+              <input type="text"
+               name="schemeName" 
+              id="scheme"
+              placeholder="Casela Tower"
+              {...register("schemeName",ValidationSchema.schemeName)}
+              />
+            </p>
+            <p>
               Floor :
               {<span style={{ color: "red" }}>{errors?.floor?.message}</span>}
               <br />
@@ -707,10 +755,10 @@ const SellWithUs = () => {
             {...register("city",ValidationSchema.city)}
             onChange={getArea}
              >
-              <option value='' disabled>--Choose city--</option>
+              <option value=''>--Choose city--</option>
               {
                 city?.map((e)=>{
-                  return (<option value={e.cityName} 
+                  return (<option value={e._id} 
                     name="city" 
                   >
                     {e.cityName}
@@ -758,6 +806,19 @@ const SellWithUs = () => {
               />
             </p>
             <p>
+              PinCode:
+              {
+                <span style={{ color: "red" }}>
+                  <br />
+                {errors?.pincode?.message}
+              </span>
+              }
+              <input type="number" name="pincode"
+               id="pincode"
+               {...register("pincode",ValidationSchema.pincode)}
+               />
+            </p>
+            <p>
               Set a Price
               {<span style={{ color: "red" }}>{errors?.price?.message}</span>}
               <br />
@@ -777,10 +838,12 @@ const SellWithUs = () => {
                 type="file"
                 name="imag"
                 id="imag"
+                className="multiple-files-filepond"
                 // required=""
                 accept="image/"
                 {...register("image")}
                 onChange={handleImageChange}
+                
                 // accept='.jpeg/.jpg/.png'
               />
               
@@ -788,8 +851,20 @@ const SellWithUs = () => {
 
               <br />
               {
-                images.map((e)=>{
-                  return (<img src={e.name} alt="IAMGES" />)
+                prevImages.map((e)=>{
+                  // console.log(e,"eeeee");
+                  return (
+                  <>
+                  <img src={e.file} alt="IAMGES"
+                  className="preview_image"
+                  />
+                  <GiCancel className="cancel_image" onClick={()=>{removeImage(e.file)}}/>
+                  </>
+                  )
+                  // fileReader.onload((e)=>{
+
+                  // })
+                  // return (fileReader.readAsDataURL(e.blob))
                 })
               }
             </p> 

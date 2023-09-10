@@ -19,9 +19,6 @@ const Carousel = ({images}) => {
         }}
         >
             <BiSolidLeftArrow/>
-            {/* <button className="left-arrow">
-                &lt;
-            </button> */}
 
         </div>
         <div className="center">
@@ -31,15 +28,7 @@ const Carousel = ({images}) => {
            currImg<images.length-1 && setCurrImg(currImg+1)
             }}>
         <BiSolidRightArrow/>
-            {/* <button className="right-arrow">
-                &gt;
-            </button> */}
         </div>
-        {/* {
-            images.map((e)=>{
-                return <img src={e.img} alt="imaggre" />
-            })
-        } */}
         </div>
         
       </div>

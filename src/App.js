@@ -7,8 +7,17 @@ import House from './Pages/House/House';
 import SignupForm from './Pages/Signup/SignupForm';
 import Login from './Pages/Login/Login';
 import SellWithUs from './Pages/SellWithUs/SellWithUs';
+import Dashboard from './Pages/UserDashboard/Dashboard';
 
 function App() {
+  var f=0;
+  const isUser=()=>{
+    var token=localStorage.getItem('user');
+    if(token!=null)
+    {
+      f=1
+    }
+  }
   const location=window.location.href.split('/');
   console.log(location.at(-1))
   return (
@@ -20,6 +29,7 @@ function App() {
     <Route path='/signup' element={<SignupForm/>}></Route>
     <Route path='/login' element={<Login/>}></Route>
     <Route path='/sellwithus' element={<SellWithUs/>}></Route>
+    <Route path='/userdashboard' element={<Dashboard/>} ></Route>
     {/* <Route path='/footer' element={<Footer/>}></Route> */}
 
     </Routes>

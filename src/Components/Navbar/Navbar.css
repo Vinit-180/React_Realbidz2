@@ -91,6 +91,7 @@ nav img {
   color: white;
   font-size: 1.7rem;
   margin: 0 auto;
+  cursor: pointer;
 }
 @media screen and (max-width: 1024px) {
   /* .nav__container {

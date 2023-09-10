@@ -57,14 +57,34 @@ const Navbar = () => {
                     >
           {name}
                     </NavLink>  
+
           </li>)
         })
+        
       }
-
+      {
+        isUser && (
+          <li className="sellwithus">
+              <NavLink
+                     to='/sellwithus'
+                     className='item'
+                     onClick={()=>{setIsNavShowing((prev)=>!prev)}} 
+                    >
+          SellWithUs
+                    </NavLink>  
+          </li>
+        )
+      }
       </ul>
         
       {
-          isUser ? (<button onClick={logout}  className='signup mt-1 ms-1 me-5  btn btn-danger'>Logout</button>) :
+          isUser ? (
+          <>
+            <button onClick={logout}  className='signup mt-1 ms-1 me-3 btn btn-danger'>Logout</button> 
+            <p className='icon me-3'>
+      <RiAccountCircleFill onClick={()=>{navigate('/userdashboard')}} />
+      </p>
+          </>):
           (<>
           <li style={{float:'right'}}>
 
@@ -94,9 +114,7 @@ const Navbar = () => {
           isNavShowing ? <AiOutlineClose/> : <FaBars/> 
         }
       </button>
-      <p className='icon'>
-      <RiAccountCircleFill/>
-      </p>
+      
       </div>
     </nav>
     // </>

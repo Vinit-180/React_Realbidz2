@@ -1,14 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { carousel__images } from "../../data";
 import Carousel from "../../Components/Carousel/Carousel";
 import Card from "../../Components/Card/Card";
 import "./House.css";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 const House = () => {
   const [data,setData]=useState([]);
+  const location=useLocation();
+  const value=location.state?.value;
   const getData=()=>{
-    axios.get("http://localhost:999")
+    axios.get("http://localhost:9999/api/v1/property/getpropertybyid/"+value).then((data)=>{
+      console.log(data);
+    }).catch((error)=>{
+      console.log(error);
+    })
   }
+  useEffect(()=>{
+    getData();
+  },[]);
+
   return (
     <>
       <div className="carousels" >
