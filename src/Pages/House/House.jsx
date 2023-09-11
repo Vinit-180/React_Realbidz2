@@ -11,7 +11,8 @@ const House = () => {
   const value=location.state?.value;
   const getData=()=>{
     axios.get("http://localhost:9999/api/v1/property/getpropertybyid/"+value).then((data)=>{
-      console.log(data);
+      console.log("the data is ",data);
+      setData(data.data.data);
     }).catch((error)=>{
       console.log(error);
     })
@@ -19,67 +20,111 @@ const House = () => {
   useEffect(()=>{
     getData();
   },[]);
-
+  
   return (
     <>
-      <div className="carousels" >
-        <Carousel images={carousel__images} ></Carousel>
+      (<div className="carousels" >
+        <Carousel images={data?.image} ></Carousel>
       </div>
       <div className="details">
         <ul>
-          <li>Category:
-            <span><b>Residential</b></span>
+          <li>
+            Type:
+            <p>
+              <b>
+                {data?.type}
+              </b>
+            </p>
           </li>
+          <li>Category:
+            <p><b>{data?.category}</b></p>
+          </li>
+          <li>
+            Bedrooms
+            <p>
+              <b>
+                {data?.bedrooms} Bhk
+              </b>
+            </p>
+          </li>
+
           <li>Carpet Area:
-            <span><b>800sqft</b></span>
+            <p><b>{data?.carpetArea}sqft</b></p>
           </li>
           <li>
             Floor :
-            <span>
-              <b>5 (out of 8)</b>
-            </span>
+            <p>
+              <b>{data?.floor} (out of 8)</b>
+            </p>
           </li>
           <li>
             Transaction Type:
-            <span>
+            <p>
               <b>
                 Resale
               </b>
-            </span>
+            </p>
           </li>
           <li>
             Amenities:
-            <span>
+            <p>
               <b>
                 Water availibility 24X7,Garden,Parking
               </b>
-            </span>
+            </p>
           </li>
         </ul>
         <ul>
           <li>Price:
-            <span><b>&#8377; 45lac</b></span>
+            <p><b>&#8377; {data?.price}</b></p>
           </li>
           <li>Address :
-            <span><b>
-              I-504, Swarnim Paradise,Vavol, Gandhinagar,Gujarat-382016
-              </b></span>
+            <p><b>
+              {data?.fullAddress}
+              </b></p>
+          </li>
+          {
+            data?.totalFloor && (<li>
+              Total Floors:
+              <p>
+                <b>
+                  {data?.totalFloors}
+                </b>
+              </p>
+            </li>)
+          }
+          
+          <li>
+            Listed By:
+            <p>
+              <b>
+                {data?.listedBy}
+              </b>
+            </p>
           </li>
           <li>
             Furnishing :
-            <span>
+            <p>
               <b>
-                Fully Furnished
+                {data?.furnishing}
                 </b>
-            </span>
+            </p>
+          </li>
+          <li>
+          Construction Status : 
+          <p>
+            <b>
+              {data?.constructionStatus}
+            </b>
+          </p>
           </li>
           <li>
             Age of Construction:
-            <span>
+            <p>
               <b>
-                7 Years
+                {data?.ageOfConstruction}
               </b>
-            </span>
+            </p>
           </li>
         </ul>
       </div>
@@ -87,9 +132,11 @@ const House = () => {
         <button>
         Contact Owner
         </button>
+        <p>
+
+        </p>
       </div>
       <div className="advertise">
-
       <h1>
         <center>
          Popular Properties In Gujarat
@@ -138,7 +185,7 @@ const House = () => {
         </div>
       </div>
 
-
+)
     </>
   );
 };

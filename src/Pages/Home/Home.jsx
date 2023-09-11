@@ -71,6 +71,7 @@ const Home = () => {
       console.log(data);
       setPropertyData(data.data.data);
     }).catch((error)=>{
+      // setPropertyData([]);
       console.log(error);
     })
   }
@@ -188,23 +189,23 @@ const Home = () => {
             {...register("budget",ValidationSchema.budget)}
             >
               <option value="" >Budget</option>
-              <option value="25lac">
+              <option value="2500000">
                 &#8377; 25 lac
               </option>
-              <option value="40lac">
+              <option value="4000000">
                 &#8377; 40 lac
               </option>
-              <option value="50lac">
+              <option value="5000000">
                 &#8377; 50 lac
               </option>
-              <option value="60lac">
+              <option value="6000000">
                 &#8377; 60 lac
               </option>
-              <option value="25lac">
-                &#8377; 25 lac
+              <option value="8000000">
+                &#8377; 80 lac
               </option>
-              <option value="25lac">
-                &#8377; 25 lac
+              <option value="1000000">
+                &#8377;  &gt; 80lac
               </option>
             </select>
           </p>
@@ -217,7 +218,7 @@ const Home = () => {
         </form>
           <div className="container-fluid mt-2 row">
             {
-              propertyData.map((e)=>{
+              propertyData?.map((e)=>{
                 return (
                   <Card img={e.image[0]} bedroom={e.bedrooms} type={e.type}
                   id={e._id}

@@ -123,12 +123,12 @@ const SellWithUs = () => {
         message: "propertis at floor",
       },
     },
-    totalFloor: {
+    totalFloors: {
       required: {
         value: false,
       },
     },
-    Amenities: {
+    amenities: {
       required: {
         value: false,
       },
@@ -235,7 +235,6 @@ const SellWithUs = () => {
       console.log(image);
       formData.append("file", image);
     });
-    // const userprofile=localStorage.getItem("");
     const config = {
       headers: { "content-type": "multipart/form-data" },
     };
@@ -256,6 +255,7 @@ const SellWithUs = () => {
         },2000)
       })
       .catch((error) => {
+        setFormError(error);
         console.log(error);
       });
   };
@@ -677,31 +677,31 @@ const SellWithUs = () => {
               Total Floors:
               {
                 <span style={{ color: "red" }}>
-                  {errors?.totalFloor?.message}
+                  {errors?.totalFloors?.message}
                 </span>
               }
               <br />
               <input
                 type="number"
-                name="totalFloor"
+                name="totalFloors"
                 id="tfloor"
                 placeholder="8"
-                {...register("totalFloor", ValidationSchema.totalFloor)}
+                {...register("totalFloors", ValidationSchema.totalFloors)}
               />
             </p>
             <p>
               Amenities :
               {
                 <span style={{ color: "red" }}>
-                  {errors?.Amenities?.message}
+                  {errors?.amenities?.message}
                 </span>
               }
               <br />
               <input
                 type="text"
-                name="Amenities"
+                name="amenities"
                 id="amenities"
-                {...register("Amenities", ValidationSchema.Amenities)}
+                {...register("amenities", ValidationSchema.amenities)}
               />
             </p>
             <p>

@@ -4,12 +4,12 @@ import "./Carousel.css";
 
 const Carousel = ({images}) => {
     const [currImg,setCurrImg]=useState(0);
-    console.log(images)
-  return (
+    if(images)
+  {return (
     <>
       <div className="carousel">
         <div className="carousel-inner"
-            style={{backgroundImage:`url(${images[currImg].img})`}}
+            style={{backgroundImage:`url(${images[currImg]})`}}
         >
         {/* <img src={images[currImg].img} alt="image"
             /> */}
@@ -44,7 +44,7 @@ const Carousel = ({images}) => {
     //     <button className="right-arrow">&gt;</button>
     //   </div>
     // </div>
-  );
+  );}
 };
 
 export default Carousel;
