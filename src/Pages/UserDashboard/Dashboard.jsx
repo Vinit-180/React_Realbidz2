@@ -37,16 +37,16 @@ const Dashboard = () => {
             {/* <a href="/#" className1="icon" title="User Profile">
       <i class="fa fa-user"></i>
     </a> */}
-            <i class="fas fa-camera"></i>
+            <i className="fas fa-camera"></i>
             </div>
             <img src={profile} alt="UserImage" id="userProfile" />
             </label>
-            
+
           </p>
-          <div class="list-group mt-5 w-75 m-auto">
+          <div className="list-group mt-5 w-75 m-auto">
             <button
               type="button"
-              class="list-group-item list-group-item-action active profile-card"
+              className="list-group-item list-group-item-action active profile-card"
               aria-current="true"
               id='profile'
               onClick={()=>{ButtonSelect('profile')}}
@@ -55,7 +55,7 @@ const Dashboard = () => {
             </button>
             <button
               type="button"
-              class="list-group-item list-group-item-action profile-card"
+              className="list-group-item list-group-item-action profile-card"
               id='property'
               onClick={()=>{ButtonSelect('property')}}
             >

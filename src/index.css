@@ -30,3 +30,8 @@ body:not(nav)
 {
   margin-top: 5rem;
 }
+
+.table button
+{
+  background-color: rgb(220, 53, 69);
+}

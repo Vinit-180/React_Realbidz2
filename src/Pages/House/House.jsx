@@ -9,6 +9,7 @@ const House = () => {
   const [data,setData]=useState([]);
   const location=useLocation();
   const value=location.state?.value;
+  const [showData,setShowData]=useState(false);
   const getData=()=>{
     axios.get("http://localhost:9999/api/v1/property/getpropertybyid/"+value).then((data)=>{
       console.log("the data is ",data);
@@ -17,6 +18,7 @@ const House = () => {
       console.log(error);
     })
   }
+
   useEffect(()=>{
     getData();
   },[]);
@@ -37,7 +39,7 @@ const House = () => {
             </p>
           </li>
           <li>Category:
-            <p><b>{data?.category}</b></p>
+            <b>{data?.category}</b>
           </li>
           <li>
             Bedrooms
@@ -129,12 +131,26 @@ const House = () => {
         </ul>
       </div>
       <div className="contactowner">
-        <button>
+        <button onClick={()=>{setShowData(true)}}>
         Contact Owner
         </button>
-        <p>
+        {
+          showData && (
+              <div>
 
-        </p>
+            <p>
+              Name : {data?.userId?.firstName} {data?.userId?.lastName}
+            </p>
+            <p>
+              Email : {data?.userId?.email}
+            </p>
+            <p>
+              phoneNo : {data?.userId?.phoneNo}
+            </p>
+              </div>
+          
+          )
+        }
       </div>
       <div className="advertise">
       <h1>

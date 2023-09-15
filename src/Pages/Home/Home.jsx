@@ -76,10 +76,10 @@ const Home = () => {
     })
   }
 
-  const navigateToPage=(id)=>{
-    console.log("id",id);
-    navigate('/house',{state:{value:id}});
-  }
+  // const navigateToPage=(id)=>{
+  //   console.log("id",id);
+  //   navigate('/house',{state:{value:id}});
+  // }
 
   useEffect(()=>{
     getCity();

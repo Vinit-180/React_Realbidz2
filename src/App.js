@@ -10,16 +10,16 @@ import SellWithUs from './Pages/SellWithUs/SellWithUs';
 import Dashboard from './Pages/UserDashboard/Dashboard';
 
 function App() {
-  var f=0;
-  const isUser=()=>{
-    var token=localStorage.getItem('user');
-    if(token!=null)
-    {
-      f=1
-    }
-  }
+  // var f=0;
+  // const isUser=()=>{
+  //   var token=localStorage.getItem('user');
+  //   if(token!=null)
+  //   {
+  //     f=1
+  //   }
+  // }
   const location=window.location.href.split('/');
-  console.log(location.at(-1))
+  // console.log(location.at(-1))
   return (
     <BrowserRouter>
     <Navbar/>

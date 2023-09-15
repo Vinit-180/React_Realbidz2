@@ -16,10 +16,12 @@ const Navbar = () => {
     {
       setIsUser(true);
       console.log(1);
-      // window.location.reload();
+    }
+    else
+    {
+      setIsUser(false);
     }
   }
-  console.log("swdf",isUser);
   const signup=()=>{
     navigate("/signup");
   }
@@ -36,7 +38,7 @@ const Navbar = () => {
 
   useEffect(()=>{
     checkUser();
-  },[])
+  },[localStorage.getItem("user")]);
 
   return (
     // <>
@@ -84,16 +86,13 @@ const Navbar = () => {
             <p className='icon me-3'>
       <RiAccountCircleFill onClick={()=>{navigate('/userdashboard')}} />
       </p>
-          </>):
-          (<>
+          </>):(<>
           <li style={{float:'right'}}>
-
           <button onClick={signup} className='signup mt-1 ms-1 me-3  btn btn-danger'>
           Signup
         </button>
           </li>
           <li style={{float:'right'}}>
-
         <button className='login mt-1 ms-1 me-3 btn btn-danger' onClick={login}>
           Login</button>
           </li>
