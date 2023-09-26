@@ -7,12 +7,10 @@ const Carousel = ({images}) => {
     if(images)
   {return (
     <>
-      <div className="carousel">
+      <div className="carousel ">
         <div className="carousel-inner"
-            style={{backgroundImage:`url(${images[currImg]})`}}
+        style={{backgroundImage:`url(${images[currImg]})`}}
         >
-        {/* <img src={images[currImg].img} alt="image"
-            /> */}
         <div className="left"
         onClick={()=>{
         currImg>0 && setCurrImg(currImg-1)
@@ -25,7 +23,7 @@ const Carousel = ({images}) => {
         </div>
         <div className="right"
         onClick={()=>{
-           currImg<images.length-1 && setCurrImg(currImg+1)
+           setCurrImg((currImg+1)%(images.length))
             }}>
         <BiSolidRightArrow/>
         </div>

@@ -2,15 +2,17 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 
 
-
 const Card = ({img,bedroom,type,price,area,schemeName,location,pincode,classn,id}) => {
   const navigate=useNavigate();
   const navigateToPage=(id)=>{
     console.log("id",id);
-    navigate('/house',{state:{value:id}});
+    navigate('/house/:'+id,{state:{value:id}});
+    window.scrollTo({top:0,behavior:'smooth'})
   }
   return (
-    <div className={`${classn} card p-4 m-4`} onClick={()=>{navigateToPage(id)}}>
+    <div className={`${classn} card p-4 m-4`} onClick={()=>{navigateToPage(id)}}
+    style={{minHeight:"300px"}}
+    >
         <img src={img} alt="Image of house" height={100} width={100}
         className='card-img-top m-auto'
         />

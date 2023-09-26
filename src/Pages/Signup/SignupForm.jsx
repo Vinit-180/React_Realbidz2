@@ -68,7 +68,7 @@ const SignupForm = () => {
             tandc:{
                 required:{
                     value:true,
-                    message:"please agree with us"
+                    message:"Agree with terms and conditions"
                 }
             }
         }

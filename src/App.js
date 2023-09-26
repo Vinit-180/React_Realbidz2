@@ -25,7 +25,7 @@ function App() {
     <Navbar/>
     <Routes>
     <Route index element={<Home/>}></Route>
-    <Route path='/house' element={<House/>} ></Route>
+    <Route path='/house/:id' element={<House/>} ></Route>
     <Route path='/signup' element={<SignupForm/>}></Route>
     <Route path='/login' element={<Login/>}></Route>
     <Route path='/sellwithus' element={<SellWithUs/>}></Route>

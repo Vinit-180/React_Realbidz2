@@ -35,3 +35,16 @@ body:not(nav)
 {
   background-color: rgb(220, 53, 69);
 }
+.card:hover
+{
+    box-shadow: 10px 5px 10px gainsboro;
+}
+
+@media screen and (max-width:425px)
+{
+  .popular__card
+  {
+    margin-inline: auto;
+  } 
+
+}

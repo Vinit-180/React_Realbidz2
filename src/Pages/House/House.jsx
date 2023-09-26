@@ -4,6 +4,7 @@ import Carousel from "../../Components/Carousel/Carousel";
 import Card from "../../Components/Card/Card";
 import "./House.css";
 import axios from "axios";
+import PopularProperties from '../../Components/PopularProperties'
 import { useLocation } from "react-router-dom";
 const House = () => {
   const [data,setData]=useState([]);
@@ -21,7 +22,7 @@ const House = () => {
 
   useEffect(()=>{
     getData();
-  },[]);
+  },[value]);
   
   return (
     <>
@@ -39,7 +40,9 @@ const House = () => {
             </p>
           </li>
           <li>Category:
+            <p> 
             <b>{data?.category}</b>
+            </p>
           </li>
           <li>
             Bedrooms
@@ -128,6 +131,14 @@ const House = () => {
               </b>
             </p>
           </li>
+          <li>
+            Full Address :
+            <p>
+              <b>
+                {data?.fullAddress}
+              </b>
+            </p>
+          </li>
         </ul>
       </div>
       <div className="contactowner">
@@ -155,50 +166,14 @@ const House = () => {
       <div className="advertise">
       <h1>
         <center>
-         Popular Properties In Gujarat
+         Popular Properties In {data?.city} 
         </center>
          </h1>
-         <div className="advertise__card">
-         <Card img={carousel__images[0].img} type={'2BHK Apartment'}
-         price='48.8Lac' area='Ahemdabad' schemeName='Kavish amara'
-         location='Ahemdabad'
-         pincode='382006'
-         >
-        {/* <h1>2 BHK apartment
-        </h1>
-        <h2>
-          &#8377;
-          48.8Lac |1140sqft
-        </h2>
-        <h3>
-          Kavish amara
-        </h3> */}
-        </Card> 
-         <Card img={carousel__images[0].img}>
-        <h1>2 BHK apartment
-          48.8Lac |1140sqft
-        </h1>
-        <h3>
-          Kavish amara
-        </h3>
-        </Card> 
-         <Card img={carousel__images[0].img}>
-        <h1>2 BHK apartment
-          48.8Lac |1140sqft
-        </h1>
-        <h3>
-          Kavish amara
-        </h3>
-        </Card> 
-         <Card img={carousel__images[0].img}>
-        <h1>2 BHK apartment
-          48.8Lac |1140sqft
-        </h1>
-        <h3>
-          Kavish amara
-        </h3>
-        </Card> 
-        </div>
+         {data  && console.log(Object.keys(data).length>0)}
+         {
+          Object.keys(data).length>0 &&  
+        (<PopularProperties city={data?.city}/>)
+        }
       </div>
 
 )

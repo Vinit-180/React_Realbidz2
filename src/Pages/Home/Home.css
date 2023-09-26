@@ -112,3 +112,12 @@ input[type=range]:focus
 {
     
 } */
+
+@media screen and (max-width:420px)
+{
+    .choice__form
+    {
+        margin-inline: auto;
+    }
+
+}

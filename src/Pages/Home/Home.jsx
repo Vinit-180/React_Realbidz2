@@ -6,14 +6,14 @@ import Card from '../../Components/Card/Card'
 import axios from 'axios';
 import { card__data } from '../../data';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom'
+import PopularProperties from '../../Components/PopularProperties'
 const Home = () => {
   const [city,setCity]=useState([]);
   const [area,setArea]=useState([]);
+  const [cityName,setCityName]=useState('');
   const [propertyData,setPropertyData]=useState([]);
-  const [range,setRange]=useState(0);
   const {register,handleSubmit,formState: {errors} }=useForm();
-  const navigate=useNavigate();
+  const [message,setMessage]=useState("");
   const getCity=()=>{
     axios
     .get("http://localhost:9999/api/v1/city/getcity")
@@ -25,6 +25,7 @@ const Home = () => {
     })
   }
   const getArea=(e)=>{
+
     console.log(e.target.value)
     axios
     .get("http://localhost:9999/api/v1/area/getareabyid/"+e.target.value)
@@ -69,17 +70,25 @@ const Home = () => {
     console.log(data);
     axios.post("http://localhost:9999/api/v1/property/getproperty",data).then((data)=>{
       console.log(data);
-      setPropertyData(data.data.data);
+      if(Object.keys(data.data.data).length>0)
+      {setPropertyData(data.data.data);}
+      else
+      {
+        setMessage("Property of Your Choice is not found");
+        setCityName(data.data.cityName)
+      }
+      console.log("DDD",Object.keys(data.data.data).length);
     }).catch((error)=>{
-      // setPropertyData([]);
       console.log(error);
     })
+
+    // axios.post("http://localhost:9999/api/v1/property/getproperty",{city:data.city,cityId:1}).then((d)=>{
+    //   console.log(d.data);
+    //   setPopularData(data.data.data);
+    // }).catch((err)=>{
+    // console.log(err)})
   }
 
-  // const navigateToPage=(id)=>{
-  //   console.log("id",id);
-  //   navigate('/house',{state:{value:id}});
-  // }
 
   useEffect(()=>{
     getCity();
@@ -216,7 +225,7 @@ const Home = () => {
           </p>
           </div>
         </form>
-          <div className="container-fluid mt-2 row">
+          <div className="container-fluid mt-2 row popular__card">
             {
               propertyData?.map((e)=>{
                 return (
@@ -226,13 +235,17 @@ const Home = () => {
                   price={e.price}
                    schemeName={e.schemeName}
                    area={e.area} location={e.city} pincode={e.pincode}
-                   
-                  //  className='col-3'
                    />
                    )
                   })
                 }
+                {message.length>0 ?
+                <h5 style={{color:'red'}}> 
+                  {message}
+                </h5>:''
+                }
           </div>
+
         <div className="advertise mt-2">
           <h1>
             <center>
@@ -240,28 +253,24 @@ const Home = () => {
             </center>
           </h1>
           <div className='container-fluid mt-2 row'> 
+          {console.log(cityName)}
           {
+            cityName.length>0 && (<PopularProperties city={cityName}/>)
+          }
+          {/* {
             card__data.map((e)=>
             {
               return (
-                <Card img={e.img} type={e.type} price={e.price}
+                <Card img={e?.img} type={e.type} price={e?.price}
                 classn={'col-sm-6 col-lg-3'}
-                bedroom={e.bedrooms}
-                area={e.area} schemeName= {e.schemeName} location={e.location}
-                pincode={e.pincode}
+                bedroom={e?.bedrooms}
+                area={e?.area} schemeName= {e?.schemeName} location={e?.location}
+                pincode={e?.pincode}
                 ></Card>
                 )
               })
-            }
+            } */}
             </div>
-        {/* <Card img={img1} >
-         <h1>2 BHK apartment
-          48.8Lac |1140sqft
-        </h1>
-        <h3>
-          Kavish amara
-        </h3> 
-        </Card>  */}
         </div>
     </div>
     </>

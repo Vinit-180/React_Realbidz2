@@ -24,11 +24,12 @@ const Dashboard = () => {
   return (
     <>
       <div className="container-fluid row">
-        <div className="col-3">
+        <div className="col-12">
           <h1>
             <center>DASHBOARD</center>
           </h1>
-          <p className="w-75 mt-2 profileImage">
+          </div>
+          <p className="mt-2 profileImage">
             <input type="file" name="userProfile" id="profilepic" 
             style={{display:"none"}}
             />
@@ -39,11 +40,10 @@ const Dashboard = () => {
     </a> */}
             <i className="fas fa-camera"></i>
             </div>
-            <img src={profile} alt="UserImage" id="userProfile" />
+            <img src={profile} alt="UserImage" id="userProfile"height='250px' width='250px'  />
             </label>
-
           </p>
-          <div className="list-group mt-5 w-75 m-auto">
+            <div className="list-group mt-5 col-4">
             <button
               type="button"
               className="list-group-item list-group-item-action active profile-card"
@@ -51,7 +51,7 @@ const Dashboard = () => {
               id='profile'
               onClick={()=>{ButtonSelect('profile')}}
             >
-              Profile
+              Profile 
             </button>
             <button
               type="button"
@@ -62,8 +62,7 @@ const Dashboard = () => {
               Your Property
             </button>
           </div>
-        </div>
-        <div className="col-9 mt-5">
+        <div className="col-8 ">
           {
             console.log(card)
           }
