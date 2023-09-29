@@ -39,6 +39,9 @@ body:not(nav)
 {
     box-shadow: 10px 5px 10px gainsboro;
 }
+.card{
+  margin-right: 3rem;
+}
 
 @media screen and (max-width:425px)
 {
@@ -46,5 +49,8 @@ body:not(nav)
   {
     margin-inline: auto;
   } 
-
+  .card
+  {
+    margin-right: 0;
+  }
 }

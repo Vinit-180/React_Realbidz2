@@ -34,7 +34,7 @@ const UserProperty = () => {
     getData();
   }, []);
   return (
-    <div className="mt-5 property">
+    <div className="mt-5 property h-100">
       <h1>Property Details</h1>
       <table className="property__table table table-responsive">
       {/* table-bordered  table-striped*/}

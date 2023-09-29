@@ -9,7 +9,8 @@ import 'react-toastify/dist/ReactToastify.css';
 const Contact = () => {
     const [decoded,setDecoded] =useState();
     useEffect(()=>{
-        setDecoded( jwt_decode(localStorage.getItem("user")));
+        if(localStorage.getItem("user")!=null || localStorage.getItem("user")!=undefined)
+        {setDecoded(jwt_decode(localStorage.getItem("user")));}
     },[]);
     console.log(decoded)
     const [formData1, setFormData] = useState({

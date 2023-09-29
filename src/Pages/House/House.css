@@ -21,6 +21,7 @@
   margin: 2rem;
 }
 
+
 .contactowner button {
   background-color: rgb(220, 53, 69);
   color: white;
@@ -31,15 +32,15 @@
   padding: 0.8rem;
 }
 
-.advertise {
+/* .advertise {
   margin: 0 auto;
   padding: 0 2rem;
-}
+} */
 
-.advertise__card {
+/* .advertise__card {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-}
+} */
 
 @media screen and (max-width: 480px) {
   .carousels {

@@ -185,7 +185,9 @@ const SellWithUs = () => {
   const fileReader=new FileReader();
   const [images, setImages] = useState([]);
   const [prevImages,setPrevImages]=useState([]);
-  const notify = () =>  toast.success('Your form has been successfully uploaded.');
+  const notify = (success,msg) =>{success ? (toast.success(msg,{
+    position: toast.POSITION.TOP_RIGHT
+})) : (toast.error(msg))};
   const handleImageChange = (event) => {
     event.preventDefault();
     const newImages = event.target.files;
@@ -249,14 +251,15 @@ const SellWithUs = () => {
       )
       .then((data) => {
         console.log(data);
-        notify();
+        notify(true,'Your form has been successfully uploaded.');
         setTimeout(()=>{
           window.location.pathname='/';
         },2000)
       })
       .catch((error) => {
-        setFormError(error);
-        console.log(error);
+        setFormError(error.message);
+        console.log(error.message);
+        notify(false,error.message)
       });
   };
   useEffect(()=>{
@@ -271,6 +274,9 @@ const SellWithUs = () => {
         <div className="col-md-6 mt-5 mb-5 col-sm-12">
           <h1>
             <center>Post your Ad</center>
+            <p style={{color:'red'}}>
+            {formError}
+            </p>
           </h1>
           <form encType="multipart/form-data" onSubmit={handleSubmit(submit)}>
             {/* <p>

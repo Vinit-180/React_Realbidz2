@@ -141,19 +141,25 @@ const House = () => {
           </li>
         </ul>
       </div>
-      <div className="contactowner">
+      <div className="contactowner container">
         <button onClick={()=>{setShowData(true)}}>
         Contact Owner
         </button>
         {
           showData && (
-              <div>
+              <div className="owner mt-3 ms-2">
 
             <p>
-              Name : {data?.userId?.firstName} {data?.userId?.lastName}
+              Name: 
+              <b className="ms-1">
+              {data?.userId?.firstName} {data?.userId?.lastName}
+              </b>
             </p>
             <p>
-              Email : {data?.userId?.email}
+              Email: 
+              <span className="ms-1">
+                {data?.userId?.email}
+              </span>
             </p>
             <p>
               phoneNo : {data?.userId?.phoneNo}

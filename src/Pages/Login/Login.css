@@ -43,3 +43,8 @@
     color: black !important;
 }
 
+
+.form__login
+{
+    padding: 10rem 0;
+}

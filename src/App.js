@@ -9,6 +9,8 @@ import Login from './Pages/Login/Login';
 import SellWithUs from './Pages/SellWithUs/SellWithUs';
 import Dashboard from './Pages/UserDashboard/Dashboard';
 import Contact from './Components/Contactus/Contact';
+import jwt_decode from 'jwt-decode';
+import { useEffect, useState } from 'react';
 function App() {
   // var f=0;
   // const isUser=()=>{
@@ -18,6 +20,11 @@ function App() {
   //     f=1
   //   }
   // }
+  const [decoded,setDecoded] =useState();
+  useEffect(()=>{
+    if(localStorage.getItem("user")!=null)
+      setDecoded(jwt_decode(localStorage.getItem("user")));
+  },[]);
   const location=window.location.href.split('/');
   return (
     <BrowserRouter>
@@ -27,9 +34,15 @@ function App() {
     <Route path='/house/:id' element={<House/>} ></Route>
     <Route path='/signup' element={<SignupForm/>}></Route>
     <Route path='/login' element={<Login/>}></Route>
-    <Route path='/sellwithus' element={<SellWithUs/>}></Route>
-    <Route path='/userdashboard' element={<Dashboard/>} ></Route>
-    <Route path='/contact' element={<Contact/>}></Route>
+    {
+      decoded && (<>
+      <Route path='/sellwithus' element={<SellWithUs/>}></Route>
+      <Route path='/userdashboard' element={<Dashboard/>} ></Route>
+      <Route path='/contact' element={<Contact/>}></Route>
+      </>)
+}
+  <Route path='/contact' element={<Contact/>}></Route>
+    <Route path='*' element={<Home/>}></Route>    
 
     {/* <Route path='/footer' element={<Footer/>}></Route> */}
 

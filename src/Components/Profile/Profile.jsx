@@ -55,7 +55,7 @@ const Profile = () => {
           <b className='fs-2 me-2'>
              Profile 
             </b> 
-        <span onClick={()=>{setEditing(true)}} className='link'>
+        <span onClick={()=>{setEditing(true)}} className='link' style={{cursor:"pointer"}}>
         Edit
         </span>
             <hr />

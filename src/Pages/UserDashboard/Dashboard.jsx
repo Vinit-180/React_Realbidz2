@@ -59,7 +59,7 @@ const Dashboard = () => {
               Your Property
             </button>
           </div>
-        <div className="col-lg-10 col-sm-12 ">
+        <div className="col-lg-10 col-sm-12 h-100 mb-5">
           {
             console.log(card)
           }

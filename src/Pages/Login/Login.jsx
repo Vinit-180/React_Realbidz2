@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './Login.css'
 import { useForm } from 'react-hook-form'
+import logo from '../../Images/auction.png'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -48,10 +49,10 @@ const Login = () => {
   return (
     <>
     <div className="container row login__form ">
-    <div className="col-6">
-          
+    <div className="col-6 form__left">
+    <img src={logo} alt="Logo Image" />
           </div>
-      <div className="col-6">
+      <div className="col-6 form__login">
         <h1>
           <center>
           Login

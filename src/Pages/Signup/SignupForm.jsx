@@ -20,7 +20,6 @@ const SignupForm = () => {
         })
     }
    
-    const pswd=watch("password");
     const ValidationSchema={
         firstName:{
             required:{
@@ -75,15 +74,15 @@ const SignupForm = () => {
       return (
     <>
     {/* form__container */}
-    <div className='form__container row m-5'>
-    <div className="col-xl-6 form__left">
+    <div className='form__container row mt-5 ms-3'>
+    <div className="col-xl-6 form__left ">
         <img src={logo} alt="Logo Image" />
     </div>
     <div className="col-xl-6 form__right col-sm-12">
         {/* // form__right */}
         <h1>REGISTER FORM</h1>
     <form action="" onSubmit={handleSubmit(submit)}>        
-            <h1 style={{c9olor:'Red'}}>{formError}</h1>
+            <h1 style={{color:'Red'}}>{formError}</h1>
         <p >
         <label htmlFor="firstName">Firstname</label>
         <br />

@@ -20,7 +20,7 @@ const PopularProperties = ({city}) => {
   },[])
   return (
     <>
-    <div className="row">
+    <div className="row container">
     {
       popularData.map((e)=>{
         return <Card img={e?.image[0]} type={e?.type}

@@ -10,10 +10,13 @@
     /* margin-inline: auto; */
 }
 
-/* .form__left
+.form__left
 {
-    margin: 0 auto;
-} */
+    padding-left: 6.5rem;
+    padding-top: 10rem !important;
+    
+}
+
 
 .form__right
 {

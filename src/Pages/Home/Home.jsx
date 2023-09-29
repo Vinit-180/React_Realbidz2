@@ -223,7 +223,7 @@ const Home = () => {
           </p>
           </div>
         </form>
-          <div className=" mt-2 row popular__card">
+          <div className=" mt-2 row popular__card container-fluid">
             {
               propertyData?.map((e)=>{
                 return (
@@ -249,7 +249,7 @@ const Home = () => {
             Popular Properties In {cityName ? cityName : 'Ahemdabad'}
             </center>
           </h1>
-          <div className='container-fluid mt-2 row'> 
+          <div className='container mt-2 row mb-4'> 
           {console.log(cityName)}
           {
             cityName.length>0  && (<PopularProperties city={cityName}/>)

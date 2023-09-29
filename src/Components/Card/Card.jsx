@@ -10,7 +10,7 @@ const Card = ({img,bedroom,type,price,area,schemeName,location,pincode,classn,id
     window.scrollTo({top:0,behavior:'smooth'})
   }
   return (
-    <div className={`${classn} col-sm-12 col-lg-3 col-md-3 card p-4 m-4 `} onClick={()=>{navigateToPage(id)}}
+    <div className={`col-sm-12 col-lg-3 col-md-3 card p-3 mt-5 ms-3`} onClick={()=>{navigateToPage(id)}}
     // style={{minHeight:"300px"}}
     >
         <img src={img} alt="Image of house" height={100} width={100}
