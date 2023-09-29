@@ -5,12 +5,12 @@ import img3 from './Images/Change_house_1.jpg'
 // import img3 from '../../Images/Change_house_1.jpg'
 export const links = [
   {
-    name: "Home",
+    name: "Realbidz",
     path: "/",
   },
   {
     name: "About",
-    path: "/about",
+    path: "/",
   },
   {
     name: "Contact",

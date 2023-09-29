@@ -23,13 +23,11 @@ const PopularProperties = ({city}) => {
     <div className="row">
     {
       popularData.map((e)=>{
-        return <div className="col-lg-4 col-md-3 col-sm-12">
-          <Card img={e?.image[0]} type={e?.type}
+        return <Card img={e?.image[0]} type={e?.type}
           id={e?._id}
           price={e?.price} area={e?.area} schemeName={e?.schemeName}
          location={e?.fullAddress}
          pincode={e?.pincode} />
-        </div>
       })
     }
     </div>

@@ -46,7 +46,7 @@ const Navbar = () => {
       <div>
       </div>
       <div className="nav__container">
-      <img src={img} alt="navbar img" />
+      {/* <img src={img} alt="navbar img" /> */}
     <ul className={`nav__link ${isNavShowing ? 'show__nav' : 'hide__nav'}`} >
     {/* onClick={()=>{setIsNavShowing((prev)=>!prev)}} */}
       {
@@ -56,9 +56,7 @@ const Navbar = () => {
                      to={path}
                      className='item'
                      onClick={()=>{setIsNavShowing((prev)=>!prev)}} 
-                    >
-          {name}
-                    </NavLink>  
+                    >{name}</NavLink>  
 
           </li>)
         })

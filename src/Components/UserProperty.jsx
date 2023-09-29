@@ -34,30 +34,29 @@ const UserProperty = () => {
     getData();
   }, []);
   return (
-    <div className="mt-5">
+    <div className="mt-5 property">
       <h1>Property Details</h1>
-      <table className="table  table-striped table-hover table-bordered">
-        {/* <tr> */}
-        <thead>
+      <table className="property__table table table-responsive">
+      {/* table-bordered  table-striped*/}
+        <thead className="">
           <th>Scheme Name</th>
           <th>Category </th>
           <th>Area</th>
           <th>Address</th>
-          <th>Delete</th>
+          <th></th>
         </thead>
-        {/* </tr> */}
 
         {pdata.map((e) => {
           if (e.enable === 1) {
             return (
-              <tr>
+              <tr className="">
                 <td>{e.schemeName}</td>
                 <td>{e.category}</td>
                 <td>{e.area}</td>
                 <td>{e.fullAddress}</td>
                 <td>
                   <button
-                    className="btn btn-danger"
+                    className="btn btn-danger mb-2"
                     onClick={() => deleteProperty(e._id)}
                   >
                     Delete

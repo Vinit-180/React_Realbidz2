@@ -139,11 +139,7 @@ const Footer = () => {
           {/* //  style={{overflowX: auto}} */}
             <table className=" table table-borderless w-100">
               <tr>
-                <th className="tab-head-padd tablehead">
-            Realbidz
-                {/* <Link to="/" className="footer-link">
-          </Link> */}
-                    </th>
+                <th className="tab-head-padd tablehead">Realbidz</th>
                 <th className="tab-head-padd tablehead">Links</th>
                 <th className="tab-head-padd tablehead">Legal</th>
                 <th className="tab-head-padd tablehead">Follow Us On</th>
@@ -154,6 +150,7 @@ const Footer = () => {
                   <a href="/#" className="footer-link"> +917228806111</a>
                 </td>
                 <td>
+
                 <Link to="/about" className="footer-link"
                 >About Us</Link>
                 </td>
@@ -162,9 +159,9 @@ const Footer = () => {
                     Terms & Conditions
                   </a>
                 </td>
-                <td className="share">
+                <td className="text-align-center">
                 <p>
-                <AiFillFacebook />
+                <AiFillFacebook className="me-2" />
                 <span className="footer-link">
               Facebook
                 </span>
@@ -173,12 +170,12 @@ const Footer = () => {
                 </td>
               </tr>
               <tr>
-                <td>Email :</td>
+                <td className="w-25">Email: 
+                <span className="footer-link">
+                vinitchokshi1809@gmail.com  
+                </span></td>
                 <td>
                 <Link to="/contact" className="footer-link">Contact Us</Link>
-                  {/* <a href="contact.html" className="footer-link">
-                    Contact Us
-                  </a> */}
                 </td>
                 <td>
                   <a href="/#" className="footer-link">
@@ -187,7 +184,7 @@ const Footer = () => {
                 </td>
                 <td className="share">
                     <p >
-                <AiFillLinkedin />
+                <AiFillLinkedin className="me-2" />
                 <span className="footer-link">
               Linkdin
 
@@ -196,16 +193,14 @@ const Footer = () => {
                 </td>
               </tr>
               <tr>
-                <td>
-                  <a href="/#" className="footer-link concat">
-                    vinitchokshi1809@gmail.com
-                  </a>
+                <td className="footer-link concat">
+                    
                 </td>
                 <td></td>
                 <td></td>
                 <td className="share">
                   <p>
-                  <AiFillTwitterSquare />
+                  <AiFillTwitterSquare className="me-2"/>
                   <span className="footer-link">
               Twitter
                   </span>
@@ -218,7 +213,7 @@ const Footer = () => {
                 <td></td>
                 <td className="share">
                   <p>
-                  <AiFillInstagram />
+                  <AiFillInstagram className="me-2"/>
                   <span className="footer-link">
               Instagram
                   </span>

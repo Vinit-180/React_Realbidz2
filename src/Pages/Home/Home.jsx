@@ -19,11 +19,13 @@ const Home = () => {
     .get("http://localhost:9999/api/v1/city/getcity")
     .then((data)=>{
       // console.log("THE DATA IS",data);
+      setCityName("AHMEDABAD");
       setCity(data.data.data);
     }).catch((error)=>{
       console.log(error);
     })
   }
+  
   const getArea=(e)=>{
 
     console.log(e.target.value)
@@ -68,13 +70,14 @@ const Home = () => {
   }
   const submit=(data)=>{
     console.log(data);
+    setCityName('');
     axios.post("http://localhost:9999/api/v1/property/getproperty",data).then((data)=>{
       console.log(data);
       if(Object.keys(data.data.data).length>0)
       {setPropertyData(data.data.data);}
       else
       {
-        setMessage("Property of Your Choice is not found");
+        setMessage("Property of Your Choice is not found show popular properties");
         setCityName(data.data.cityName)
       }
       console.log("DDD",Object.keys(data.data.data).length);
@@ -82,11 +85,6 @@ const Home = () => {
       console.log(error);
     })
 
-    // axios.post("http://localhost:9999/api/v1/property/getproperty",{city:data.city,cityId:1}).then((d)=>{
-    //   console.log(d.data);
-    //   setPopularData(data.data.data);
-    // }).catch((err)=>{
-    // console.log(err)})
   }
 
 
@@ -225,13 +223,12 @@ const Home = () => {
           </p>
           </div>
         </form>
-          <div className="container-fluid mt-2 row popular__card">
+          <div className=" mt-2 row popular__card">
             {
               propertyData?.map((e)=>{
                 return (
                   <Card img={e.image[0]} bedroom={e.bedrooms} type={e.type}
                   id={e._id}
-                  classn={'col-sm-6 col-lg-3'}
                   price={e.price}
                    schemeName={e.schemeName}
                    area={e.area} location={e.city} pincode={e.pincode}
@@ -240,22 +237,22 @@ const Home = () => {
                   })
                 }
                 {message.length>0 ?
-                <h5 style={{color:'red'}}> 
+                <h3 style={{color:'red',textAlign:'center'}}> 
                   {message}
-                </h5>:''
+                </h3>:''
                 }
           </div>
 
-        <div className="advertise mt-2">
+        <div className="advertise mt-3">
           <h1>
             <center>
-            Popular Properties In Ahmedabad
+            Popular Properties In {cityName ? cityName : 'Ahemdabad'}
             </center>
           </h1>
           <div className='container-fluid mt-2 row'> 
           {console.log(cityName)}
           {
-            cityName.length>0 && (<PopularProperties city={cityName}/>)
+            cityName.length>0  && (<PopularProperties city={cityName}/>)
           }
           {/* {
             card__data.map((e)=>

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import profile from "../../Images/defaultProfilePic.jpg";
+// import profile from "../../Images/defaultProfilePic.jpg";
 import Profile from "../../Components/Profile/Profile";
 import UserProperty from "../../Components/UserProperty";
-import {FiCamera} from 'react-icons/fi'
+// import {FiCamera} from 'react-icons/fi'
 import './Dashboard.css'
 const Dashboard = () => {
   const [card,setCard]=useState('profile');
@@ -29,21 +29,18 @@ const Dashboard = () => {
             <center>DASHBOARD</center>
           </h1>
           </div>
-          <p className="mt-2 profileImage">
+          {/* <p className="mt-2 profileImage">
             <input type="file" name="userProfile" id="profilepic" 
             style={{display:"none"}}
             />
             <label htmlFor="profilepic">
             <div className="text-profilepic">
-            {/* <a href="/#" className1="icon" title="User Profile">
-      <i class="fa fa-user"></i>
-    </a> */}
             <i className="fas fa-camera"></i>
             </div>
             <img src={profile} alt="UserImage" id="userProfile"height='250px' width='250px'  />
             </label>
-          </p>
-            <div className="list-group mt-5 col-4">
+          </p> */}
+            <div className="list-group mt-5 col-lg-2 col-sm-12">
             <button
               type="button"
               className="list-group-item list-group-item-action active profile-card"
@@ -62,7 +59,7 @@ const Dashboard = () => {
               Your Property
             </button>
           </div>
-        <div className="col-8 ">
+        <div className="col-lg-10 col-sm-12 ">
           {
             console.log(card)
           }

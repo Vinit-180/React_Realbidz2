@@ -8,7 +8,7 @@ import SignupForm from './Pages/Signup/SignupForm';
 import Login from './Pages/Login/Login';
 import SellWithUs from './Pages/SellWithUs/SellWithUs';
 import Dashboard from './Pages/UserDashboard/Dashboard';
-
+import Contact from './Components/Contactus/Contact';
 function App() {
   // var f=0;
   // const isUser=()=>{
@@ -19,7 +19,6 @@ function App() {
   //   }
   // }
   const location=window.location.href.split('/');
-  // console.log(location.at(-1))
   return (
     <BrowserRouter>
     <Navbar/>
@@ -30,6 +29,8 @@ function App() {
     <Route path='/login' element={<Login/>}></Route>
     <Route path='/sellwithus' element={<SellWithUs/>}></Route>
     <Route path='/userdashboard' element={<Dashboard/>} ></Route>
+    <Route path='/contact' element={<Contact/>}></Route>
+
     {/* <Route path='/footer' element={<Footer/>}></Route> */}
 
     </Routes>
